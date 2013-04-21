@@ -15,7 +15,7 @@ $(NAME).pdf: $(NAME).dtx
 clean:
 	rm -f $(NAME).{aux,fls,glo,gls,hd,idx,ilg,ind,ins,log,out,toc,cmds,bbl,bcf,blg,run.xml}
 distclean: clean
-	rm -f $(NAME).{pdf,sty}
+	rm -f $(NAME).{pdf,sty,zip}
 inst: all
 	mkdir -p $(UTREE)/{tex,source,doc}/latex/$(NAME)
 	cp $(NAME).dtx $(UTREE)/source/latex/$(NAME)
@@ -28,3 +28,11 @@ install: all
 	sudo cp $(NAME).pdf $(LOCAL)/doc/latex/$(NAME)
 tar: install
 	cd $(LOCAL); tar czf $(PWD)/xxx-$(VERS).tar.gz {source,tex,doc}/latex/$(NAME)/*
+zip: all
+	rm -f $(NAME).zip
+	mkdir -p $(NAME)
+	cp README.md $(NAME)/README
+	cp $(NAME).{bib,dtx,pdf,sty} $(NAME)
+	cp Makefile $(NAME)
+	zip -r $(NAME).zip $(NAME)
+	rm -rf $(NAME)
