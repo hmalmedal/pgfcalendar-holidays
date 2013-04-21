@@ -57,8 +57,10 @@ Visit https://github.com/hmalmedal/pgfcalendar-holidays
 %<*driver>
 \pdfobjcompresslevel=0
 \RequirePackage[utf8]{inputenc}
-\documentclass[full, check]{l3doc}
+\documentclass[full, check, a4paper]{l3doc}
 \usepackage{\jobname}
+\usepackage{tikz}
+\usetikzlibrary{calendar}
 
 \begin{document}
   \DocInput{\jobname.dtx}
@@ -80,12 +82,44 @@ Visit https://github.com/hmalmedal/pgfcalendar-holidays
 % \maketitle
 %
 % \begin{abstract}
-%
+%   Holidays for the PGF calendar.
 % \end{abstract}
 %
 % \tableofcontents
 %
 % \begin{documentation}
+%
+% \section{Introduction}
+%
+% This package adds date checks to the PGF calendar for Easter and
+% Advent.
+%
+% \section{Usage}
+%
+% Load the package with |\usepackage{pgfcalendar-holidays}| in the
+% preamble.
+%
+% Figure~\ref{fig:easter} shows how to use the date check for Easter.
+% The date check for Advent works in the same way. You need
+% |\usepackage{tikz}| and |\usetikzlibrary{calendar}| in the preamble to
+% run this example.
+%
+% \begin{figure}[htb]
+%   \begin{minipage}{0.3\linewidth}
+%     \tikz \calendar [dates=2000-04-01 to 2000-04-last,week list] if
+%     (Easter=-2,Easter) [red];
+%   \end{minipage}^^A
+%   \begin{minipage}{0.7\linewidth}
+% \begin{verbatim}
+% \tikz
+%   \calendar [dates=2000-04-01 to 2000-04-last,
+%              week list]
+%     if (Easter=-2,Easter) [red];
+% \end{verbatim}
+%   \end{minipage}
+%   \caption{Date check for Good Friday and Easter Sunday}
+%   \label{fig:easter}
+% \end{figure}
 %
 % \section{Documentation}
 %
