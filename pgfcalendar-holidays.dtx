@@ -61,6 +61,10 @@ Visit https://github.com/hmalmedal/pgfcalendar-holidays
 \usepackage{\jobname}
 \usepackage{tikz}
 \usetikzlibrary{calendar}
+\usepackage[backend=biber,
+            style=authortitle]{biblatex}
+\addbibresource{ref.bib}
+\usepackage{microtype}
 
 \begin{document}
   \DocInput{\jobname.dtx}
@@ -123,6 +127,11 @@ Visit https://github.com/hmalmedal/pgfcalendar-holidays
 %
 % \section{Documentation}
 %
+% The date for Easter is calculated with an algorithm given by
+% \textcite[155--156]{knuth:aocp:vol1}.
+%
+% \printbibliography
+%
 % \end{documentation}
 %
 % \begin{implementation}
@@ -131,10 +140,6 @@ Visit https://github.com/hmalmedal/pgfcalendar-holidays
 %
 %    \begin{macrocode}
 %<*package>
-%    \end{macrocode}
-%
-%    \begin{macrocode}
-%<@@=pgfcalhday>
 %    \end{macrocode}
 %
 %    \begin{macrocode}

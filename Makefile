@@ -9,10 +9,11 @@ $(NAME).pdf: $(NAME).dtx
 	pdflatex -shell-escape -recorder -interaction=batchmode $(NAME).dtx >/dev/null
 	if [ -f $(NAME).idx ]; then makeindex -q -s l3doc.ist -o $(NAME).ind $(NAME).idx; fi
 	if [ -f $(NAME).glo ]; then makeindex -q -s gglo.ist -o $(NAME).gls $(NAME).glo; fi
+	biber -q $(NAME)
 	pdflatex --recorder --interaction=nonstopmode $(NAME).dtx > /dev/null
 	pdflatex --recorder --interaction=nonstopmode $(NAME).dtx > /dev/null
 clean:
-	rm -f $(NAME).{aux,fls,glo,gls,hd,idx,ilg,ind,ins,log,out,toc,cmds}
+	rm -f $(NAME).{aux,fls,glo,gls,hd,idx,ilg,ind,ins,log,out,toc,cmds,bbl,bcf,blg,run.xml}
 distclean: clean
 	rm -f $(NAME).{pdf,sty}
 inst: all
