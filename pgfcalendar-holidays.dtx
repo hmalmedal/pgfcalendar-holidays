@@ -1,3 +1,109 @@
+% \iffalse meta-comment
+% arara: make
+%<*internal>
+\iffalse
+%</internal>
+%<*internal>
+\fi
+\def\nameofplainTeX{plain}
+\ifx\fmtname\nameofplainTeX\else
+  \expandafter\begingroup
+\fi
+%</internal>
+%<*install>
+\input l3docstrip.tex
+\keepsilent
+\askforoverwritefalse
+\preamble
+
+Copyright (C) 2013 by Håkon Malmedal
+
+This work may be distributed and/or modified under the
+conditions of the LaTeX Project Public License (LPPL), either
+version 1.3c of this license or (at your option) any later
+version.  The latest version of this license is in the file:
+
+http://www.latex-project.org/lppl.txt
+
+This work is "maintained" (as per LPPL maintenance status) by
+Håkon Malmedal.
+
+Visit https://github.com/hmalmedal/pgfcalendar-holidays
+
+\endpreamble
+\declarepreamble\minimalpreamble
+\endpreamble
+\postamble
+\endpostamble
+\usedir{tex/latex/pgfcalendar-holidays}
+\generate{
+  \file{\jobname.sty}{\from{\jobname.dtx}{package}}
+}
+%</install>
+%<install>\endbatchfile
+%<*internal>
+\usepreamble\minimalpreamble
+\usepostamble\defaultpostamble
+\usedir{source/latex/pgfcalendar-holidays}
+\generate{
+  \file{\jobname.ins}{\from{\jobname.dtx}{install}}
+}
+\ifx\fmtname\nameofplainTeX
+  \expandafter\endbatchfile
+\else
+  \expandafter\endgroup
+\fi
+%</internal>
+%<*driver>
+\pdfobjcompresslevel=0
+\RequirePackage[utf8]{inputenc}
+\documentclass[full, check]{l3doc}
+\usepackage{\jobname}
+
+\begin{document}
+  \DocInput{\jobname.dtx}
+\end{document}
+%</driver>
+% \fi
+%
+% \changes{Version 1.00}{2013/04/20}{First release}
+%
+% \GetFileInfo{\jobname.sty}
+%
+% \NewDocumentCommand \releasenote {}
+%   {This file describes release \fileversion, last revised \filedate.}
+% \title{The \pkg{\jobname} package\thanks\releasenote}
+%
+% \author{Håkon Malmedal}
+% \date{Released \filedate}
+%
+% \maketitle
+%
+% \begin{abstract}
+%
+% \end{abstract}
+%
+% \tableofcontents
+%
+% \begin{documentation}
+%
+% \section{Documentation}
+%
+% \end{documentation}
+%
+% \begin{implementation}
+%
+% \section{\pkg{\jobname} Implementation}
+%
+%    \begin{macrocode}
+%<*package>
+%    \end{macrocode}
+%
+%    \begin{macrocode}
+%<@@=pgfcalhday>
+%    \end{macrocode}
+%
+%    \begin{macrocode}
 \RequirePackage{expl3}
 \ProvidesExplPackage
   {pgfcalendar-holidays}          % Package name
@@ -133,17 +239,10 @@
     { \pgfcalendarmatchestrue }
   }
 }
-
-%% Copyright (C) 2013 by Håkon Malmedal
-%%
-%% This work may be distributed and/or modified under the
-%% conditions of the LaTeX Project Public License (LPPL), either
-%% version 1.3c of this license or (at your option) any later
-%% version.  The latest version of this license is in the file:
-%%
-%% http://www.latex-project.org/lppl.txt
-%%
-%% This work is "maintained" (as per LPPL maintenance status) by
-%% Håkon Malmedal.
-%%
-%% Visit https://github.com/hmalmedal/pgfcalendar-holidays
+%    \end{macrocode}
+%
+% \end{implementation}
+%
+% \PrintChanges
+%
+% \PrintIndex
