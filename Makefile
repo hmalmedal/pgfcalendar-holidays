@@ -1,7 +1,8 @@
 NAME  = pgfcalendar-holidays
 SHELL = bash
 PWD   = $(shell pwd)
-VERS  = $(shell ltxfileinfo -v $(NAME).dtx)
+TEMP := $(shell mktemp -d)
+TDIR  = $(TEMP)/$(NAME)
 LOCAL = $(shell kpsewhich --var-value TEXMFLOCAL)
 UTREE = $(shell kpsewhich --var-value TEXMFHOME)
 all:	$(NAME).pdf clean
@@ -26,13 +27,8 @@ install: all
 	sudo cp $(NAME).dtx $(LOCAL)/source/latex/$(NAME)
 	sudo cp $(NAME).sty $(LOCAL)/tex/latex/$(NAME)
 	sudo cp $(NAME).pdf $(LOCAL)/doc/latex/$(NAME)
-tar: install
-	cd $(LOCAL); tar czf $(PWD)/xxx-$(VERS).tar.gz {source,tex,doc}/latex/$(NAME)/*
 zip: all
-	rm -f $(NAME).zip
-	mkdir -p $(NAME)
-	cp README.md $(NAME)/README
-	cp $(NAME).{bib,dtx,pdf,sty} $(NAME)
-	cp Makefile $(NAME)
-	zip -r $(NAME).zip $(NAME)
-	rm -rf $(NAME)
+	mkdir $(TDIR)
+	cp README.md $(TDIR)/README
+	cp $(NAME).{bib,dtx,pdf,sty} Makefile $(TDIR)
+	cd $(TEMP); zip -Drq $(PWD)/$(NAME).zip $(NAME)
