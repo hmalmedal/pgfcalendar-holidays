@@ -95,13 +95,23 @@ Visit https://github.com/hmalmedal/pgfcalendar-holidays
 %
 % \section{Introduction}
 %
-% This package adds date checks to the PGF calendar for Easter and
-% Advent.
+% The PGF bundle includes a calendar package, |pgfcalendar|, described in
+% chapter 57 of the PGF manual \parencite{pgfmanual}. This package adds date
+% checks for Easter and Advent.
 %
 % \section{Usage}
 %
 % Load the package with |\usepackage{pgfcalendar-holidays}| in the
 % preamble.
+%
+% The test |Easter| is true if the date being checked is Easter Sunday.
+% The test can take an optional argument, e.g. |Easter=-2| is true if
+% the date being checked is Good Friday.
+%
+% The test |Advent| is true if the date being checked is Advent Sunday,
+% the fourth Sunday before Christmas Day. The test can take an optional
+% argument, e.g. |Advent=7| is true if the date being checked is the
+% second Sunday of Advent.
 %
 % Figure~\ref{fig:easter} shows how to use the date check for Easter.
 % The date check for Advent works in the same way. You need
