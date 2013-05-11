@@ -1,8 +1,6 @@
 NAME  = pgfcalendar-holidays
 SHELL = bash
 PWD   = $(shell pwd)
-TEMP := $(shell mktemp -d)
-TDIR  = $(TEMP)/$(NAME)
 LOCAL = $(shell kpsewhich --var-value TEXMFLOCAL)
 UTREE = $(shell kpsewhich --var-value TEXMFHOME)
 all:	$(NAME).pdf clean
@@ -28,6 +26,8 @@ install: all
 	sudo cp $(NAME).sty $(LOCAL)/tex/latex/$(NAME)
 	sudo cp $(NAME).pdf $(LOCAL)/doc/latex/$(NAME)
 zip: all
+	$(eval TEMP := $(shell mktemp -d))
+	$(eval TDIR  = $(TEMP)/$(NAME))
 	mkdir $(TDIR)
 	cp README.md $(TDIR)/README
 	cp $(NAME).{bib,dtx,pdf,sty} Makefile $(TDIR)
